@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIE MODE - La Qualité À Votre Portée</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-black: #1a1a1a;
+            --secondary-black: #2a2a2a;
+            --gold: #D4AF37;
+            --gold-light: #F4E5C2;
+            --gold-dark: #B8962E;
+            --white: #ffffff;
+            --off-white: #f8f8f8;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Top Banner */
+        .top-banner {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+            color: var(--gold);
+            text-align: center;
+            padding: 16px 20px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .top-banner::before,
+        .top-banner::after {
+            content: '✨';
+            position: absolute;
+            font-size: 1.2rem;
+            animation: sparkle 2s infinite;
+        }
+
+        .top-banner::before { left: 20px; }
+        .top-banner::after { right: 20px; animation-delay: 1s; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.4; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--gold-light);
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        nav .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-dark);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .nav-icons a {
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .nav-icons a:hover {
+            transform: translateY(-3px) scale(1.1);
+            color: var(--gold);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--primary-black);
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 350px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            padding: 100px 2rem 2rem;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu.active li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-menu.active li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active li:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active li:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active li:nth-child(4) { transition-delay: 0.4s; }
+
+        .mobile-menu a {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--gold-light);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+            padding-left: 15px;
+        }
+
+        .mobile-social {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            justify-content: center;
+        }
+
+        .mobile-social a {
+            font-size: 2rem;
+            border: none;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 50%, var(--gold-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3rem 2rem;
+            overflow: hidden;
+            gap: 3rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(26,26,26,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 30px) scale(1.1); }
+        }
+
+        .hero-image {
+            flex: 1;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(26,26,26,0.05) 0%, rgba(212,175,55,0.1) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 70px rgba(212,175,55,0.2);
+            animation: slideInLeft 1s ease-out;
+            border: 2px solid var(--gold-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: right;
+            animation: slideInRight 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 6px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--gold-dark);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            border: 2px solid var(--primary-black);
+            color: var(--primary-black);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--gold-dark) 100%);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .btn-outline:hover::before {
+            left: 0;
+        }
+
+        .btn-outline:hover {
+            color: var(--white);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212,175,55,0.3);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-color: var(--gold);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+        }
+
+        .btn-gold::before {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--primary-black) 100%);
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 15px 40px rgba(212,175,55,0.5);
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--gold-dark) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-banner::before,
+        .promo-banner::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .promo-banner::before { top: 0; }
+        .promo-banner::after { bottom: 0; }
+
+        .promo-banner h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .promo-banner p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            letter-spacing: 2px;
+            color: var(--gold-light);
+        }
+
+        /* Feature Section */
+        .feature-section {
+            padding: 80px 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            max-width: 850px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
+            position: relative;
+        }
+
+        .products-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .price-banner {
+            text-align: center;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--white) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+        }
+
+        .price-banner p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 600;
+            color: var(--primary-black);
+            letter-spacing: 1.5px;
+            line-height: 1.6;
+        }
+
+        .price-highlight {
+            color: var(--gold-dark);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-weight: 700;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 60px;
+        }
+
+        .category-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(212,175,55,0.25);
+            border-color: var(--gold-light);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            filter: grayscale(0.3);
+            transition: all 0.3s;
+        }
+
+        .category-card:hover .category-icon {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+
+        .category-card h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 0.8rem;
+            letter-spacing: 1.5px;
+            color: var(--primary-black);
+            font-weight: 600;
+        }
+
+        .category-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        .about-text strong {
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+
+        .about-image {
+            height: 500px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--off-white) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 60px rgba(212,175,55,0.2);
+            border: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 17px;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+            animation: shimmer 4s infinite;
+            pointer-events: none;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 2px solid var(--gold-light);
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(212,175,55,0.2);
+            border-color: var(--gold);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-item h4 {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 1rem;
+            letter-spacing: 1.5px;
+            color: var(--primary-black);
+        }
+
+        .value-item p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 50%, var(--primary-black) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(212,175,55,0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--gold);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(212,175,55,0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            min-width: 40px;
+            color: var(--gold);
+        }
+
+        .contact-details h4 {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1.5px;
+            color: var(--gold-light);
+        }
+
+        .contact-details p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+        }
+
+        .contact-details a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .contact-details a:hover {
+            color: var(--gold);
+        }
+
+        .social-links-section {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: var(--gold);
+            color: var(--primary-black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+            font-size: 0.9rem;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.5);
+            background: var(--gold-light);
+        }
+
+        .social-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+        }
+
+        .social-btn.tiktok {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: var(--white);
+        }
+
+        .social-btn.snapchat {
+            background: linear-gradient(135deg, #FFFC00 0%, #FDD835 100%);
+            color: var(--primary-black);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.08);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(212,175,55,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--gold);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid rgba(212,175,55,0.3);
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 20px rgba(212,175,55,0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--primary-black);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 80px 2rem 40px;
+            border-top: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--gold);
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+            padding-left: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(212,175,55,0.3);
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-bottom p:first-child {
+            margin-bottom: 1rem;
+            color: #aaa;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            filter: grayscale(0.5);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            filter: grayscale(0);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--white);
+            border: 2px solid var(--gold-light);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s;
+            z-index: 997;
+            box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--primary-black) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.6);
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 997;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: -400px;
+            background: var(--white);
+            color: var(--primary-black);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid var(--gold);
+            max-width: 350px;
+        }
+
+        .toast.show {
+            right: 30px;
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toast-icon {
+            font-size: 2rem;
+        }
+
+        .toast-message {
+            flex: 1;
+        }
+
+        .toast-message h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--gold-dark);
+        }
+
+        .toast-message p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column-reverse;
+                min-height: auto;
+                padding: 3rem 2rem;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 400px;
+                margin-top: 2rem;
+            }
+
+            .hero-content {
+                text-align: center;
+                width: 100%;
+            }
+
+            .btn-container {
+                justify-content: center;
+            }
+
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                height: 400px;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-banner {
+                font-size: 0.75rem;
+                padding: 12px 15px;
+            }
+
+            nav .container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hamburger,
+            .mobile-menu,
+            .mobile-overlay {
+                display: flex;
+            }
+
+            nav .logo {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+            }
+
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .hero h1 {
+                letter-spacing: 3px;
+            }
+
+            .btn-outline {
+                padding: 1rem 2rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                letter-spacing: 2px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .social-links-section {
+                flex-direction: column;
+            }
+
+            .social-btn {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .whatsapp-float,
+            .scroll-top {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+
+            .whatsapp-float {
+                bottom: 85px;
+                right: 20px;
+            }
+
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .toast.show {
+                right: 15px;
+                left: 15px;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-image {
+                height: 250px;
+            }
+
+            .price-banner p {
+                font-size: 0.9rem;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        ✨ Promotions de Décembre en cours ! Profitez de nos offres spéciales ✨
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo" onclick="scrollToTop()">CIE MODE</div>
+            
+            <ul class="nav-menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#produits">Nos Produits</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="nav-icons">
+                    <a href="https://wa.me/2290166697411" target="_blank" title="WhatsApp">💬</a>
+                    <a href="https://www.tiktok.com/@francie7411" target="_blank" title="TikTok">🎵</a>
+                    <a href="https://www.snapchat.com/add/ladouce2612" target="_blank" title="Snapchat">👻</a>
+                </li>
+            </ul>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" onclick="toggleMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#accueil" onclick="toggleMenu()">Accueil</a></li>
+            <li><a href="#produits" onclick="toggleMenu()">Nos Produits</a></li>
+            <li><a href="#apropos" onclick="toggleMenu()">À Propos</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://wa.me/2290166697411" target="_blank" title="WhatsApp">💬</a>
+            <a href="https://www.tiktok.com/@francie7411" target="_blank" title="TikTok">🎵</a>
+            <a href="https://www.snapchat.com/add/ladouce2612" target="_blank" title="Snapchat">👻</a>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <div class="toast-icon">✅</div>
+            <div class="toast-message">
+                <h4>Message envoyé !</h4>
+                <p>Redirection vers WhatsApp...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>CIE MODE</h1>
+            <p class="tagline">La Qualité À Votre Portée</p>
+            <p>Mode pour Femmes · Hommes · Enfants</p>
+            <div class="btn-container">
+                <a href="#produits" class="btn-outline">Découvrir</a>
+                <a href="https://wa.me/2290166697411" target="_blank" class="btn-outline btn-gold">💬 Commander</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div style="text-align: center; color: var(--gold-dark); font-weight: 500; width: 100%; height: 100%;">
+                <img src="images/Cie-Mode-logo.jpg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+        <h2>🎄 PROMOTIONS DE DÉCEMBRE 🎁</h2>
+        <p>Profitez de nos offres spéciales pour finir l'année en beauté !</p>
+    </div>
+
+    <!-- Feature Section -->
+    <section class="feature-section">
+        <div class="section-label">Depuis Mai 2023</div>
+        <h2 class="section-title">VOTRE STYLE, NOTRE PASSION</h2>
+        <p class="section-description">
+            CIE MODE est née d'une passion pour la mode et du désir de mettre en valeur la beauté de chacun. 
+            Nous croyons que tout le monde mérite d'être élégant sans se ruiner. C'est pourquoi nous offrons 
+            des vêtements et accessoires de qualité à des prix accessibles pour toute la famille. Chaque pièce 
+            est sélectionnée avec soin pour allier style, confort et durabilité.
+        </p>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produits" class="products-section">
+        <div class="products-container">
+            <div class="section-label">Notre Catalogue</div>
+            <h2 class="section-title">NOS PRODUITS</h2>
+            
+            <div class="price-banner">
+                <p>
+                    Prix : <span class="price-highlight">3 500 à 25 000 FCFA</span> • 
+                    Tailles disponibles : <span class="price-highlight">S à XXXXL</span>
+                </p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">👗</div>
+                    <h3>Mode Femme</h3>
+                    <p>Robes élégantes, robes moulantes, ensembles raffinés, hauts tendance, vestes chic et boléros sophistiqués</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👔</div>
+                    <h3>Mode Homme</h3>
+                    <p>Complets distingués, chemises classiques, Lacoste, joggings confortables et vestes élégantes</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👶</div>
+                    <h3>Mode Bébé</h3>
+                    <p>Vêtements adorables et baskets pour bébés de toutes tailles, confort et style garantis</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💃</div>
+                    <h3>Tenues de Soirée</h3>
+                    <p>Collections spéciales pour mariages, baptêmes, anniversaires et toutes vos occasions importantes</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👟</div>
+                    <h3>Chaussures</h3>
+                    <p>Baskets tendance, talons élégants, tapettes confortables pour tous les styles et occasions</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👜</div>
+                    <h3>Sacs & Accessoires</h3>
+                    <p>Sacs à main raffinés, sacs d'école pratiques, bonnets stylés et accessoires de mode</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎒</div>
+                    <h3>Bagagerie</h3>
+                    <p>Collection complète de sacs pour toutes les occasions, du quotidien aux sorties spéciales</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">✨</div>
+                    <h3>Nouveautés</h3>
+                    <p>Découvrez nos dernières collections et les tendances du moment, régulièrement mis à jour</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos" class="about-section">
+        <div class="section-label" style="text-align: center;">Notre Histoire</div>
+        <h2 class="section-title" style="text-align: center;">À PROPOS DE CIE MODE</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    <strong>CIE MODE</strong> a vu le jour le 1er mai 2023, née d'une passion profonde pour la mode 
+                    et d'un désir sincère de mettre en valeur la beauté de la gente féminine et de toute la famille.
+                </p>
+                <p>
+                    Notre fondatrice a toujours adoré voir les gens élégants et à la mode. Cette passion l'a poussée 
+                    à créer une boutique où chacun peut trouver des vêtements de qualité qui reflètent sa personnalité 
+                    et son style unique, sans compromettre son budget.
+                </p>
+                <p>
+                    Aujourd'hui, CIE MODE habille les femmes, les hommes et les enfants avec des pièces soigneusement 
+                    sélectionnées. Notre mission est simple : offrir <strong>la qualité à votre portée</strong>. Nous 
+                    croyons que l'élégance et le style ne devraient pas être réservés à une élite, mais accessibles à tous.
+                </p>
+            </div>
+
+            <div class="about-image">
+                <div style="text-align: center; color: var(--gold-dark); font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <img src="images/Cie-Mode-principal.jpg">
+                </div>
+            </div>
+        </div>
+            
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-icon">💎</div>
+                <h4>Qualité Premium</h4>
+                <p>Des vêtements et accessoires sélectionnés avec soin pour leur qualité exceptionnelle et leur durabilité</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">💰</div>
+                <h4>Prix Accessibles</h4>
+                <p>La mode de qualité à des prix qui respectent votre budget (3 500 - 25 000 FCFA)</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">❤️</div>
+                <h4>Pour Toute la Famille</h4>
+                <p>Des collections pour tous : de 1 an à l'infini, chacun trouve son style chez CIE MODE</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="section-label" style="text-align: center;">Restons en Contact</div>
+            <h2 class="section-title" style="text-align: center;">CONTACTEZ-NOUS</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informations de Contact</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Téléphone & WhatsApp</h4>
+                            <p><a href="tel:+2290166697411">+229 01 66 69 74 11</a></p>
+                            <p>Disponible tous les jours pour vos commandes</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:francielinexplicatifzougnon@gmail.com">francielinexplicatifzougnon@gmail.com</a></p>
+                            <p>Réponse sous 24h garantie</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Localisation</h4>
+                            <p>Cotonou, Bénin</p>
+                            <p>Vente en ligne - Livraison à domicile</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🚚</div>
+                        <div class="contact-details">
+                            <h4>Livraison</h4>
+                            <p>🌍 Livraison disponible partout dans le monde</p>
+                            <p>Livraison chaque samedi</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Frais de livraison à la charge du client</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">💳</div>
+                        <div class="contact-details">
+                            <h4>Modes de Paiement</h4>
+                            <p>Mobile Money (MTN, Moov)</p>
+                            <p>Paiement en espèces à la livraison</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Suivez-nous sur les Réseaux</h3>
+                    <div class="social-links-section">
+                        <a href="https://wa.me/2290166697411" target="_blank" class="social-btn whatsapp">
+                            <span>💬</span>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@francie7411" target="_blank" class="social-btn tiktok">
+                            <span>🎵</span>
+                            <span>TikTok</span>
+                        </a>
+                        <a href="https://www.snapchat.com/add/ladouce2612" target="_blank" class="social-btn snapchat">
+                            <span>👻</span>
+                            <span>Snapchat</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Envoyez-nous un Message</h3>
+                    <form onsubmit="handleContact(event)">
+                        <div class="form-group">
+                            <label for="nom">Nom complet *</label>
+                            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone *</label>
+                            <input type="tel" id="telephone" name="telephone" placeholder="+229 XX XX XX XX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Décrivez ce que vous recherchez (taille, couleur, budget, etc.)..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Envoyer sur WhatsApp</button>
+                    </form>
+                    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.7);">
+                        Vous serez redirigé vers WhatsApp pour finaliser votre demande
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CIE MODE</h3>
+                <p>
+                    Votre boutique en ligne de référence au Bénin pour des vêtements et accessoires 
+                    de qualité pour toute la famille. La qualité à votre portée depuis mai 2023.
+                </p>
+                <p style="font-size: 0.95rem; margin-top: 2rem; border-left: 3px solid var(--gold); padding-left: 1rem;">
+                    <strong style="color: var(--gold);">Prix :</strong> 3 500 - 25 000 FCFA<br>
+                    <strong style="color: var(--gold);">Tailles :</strong> S à XXXXL<br>
+                    <strong style="color: var(--gold);">Livraison :</strong> 🌍 Partout dans le monde
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Boutique</h3>
+                <ul>
+                    <li><a href="#produits">Mode Femme</a></li>
+                    <li><a href="#produits">Mode Homme</a></li>
+                    <li><a href="#produits">Mode Bébé</a></li>
+                    <li><a href="#produits">Chaussures</a></li>
+                    <li><a href="#produits">Accessoires</a></li>
+                    <li><a href="#produits">🎁 Promotions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Informations</h3>
+                <ul>
+                    <li><a href="#apropos">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact">Livraison & Retours</a></li>
+                    <li><a href="#produits">Guide des Tailles</a></li>
+                    <li><a href="#contact">Modes de Paiement</a></li>
+                    <li><a href="#produits">Nos Collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Rapide</h3>
+                <ul>
+                    <li><a href="tel:+2290166697411">📱 +229 01 66 69 74 11</a></li>
+                    <li><a href="mailto:francielinexplicatifzougnon@gmail.com">✉️ Email</a></li>
+                    <li><a href="https://wa.me/2290166697411" target="_blank">💬 WhatsApp</a></li>
+                    <li><a href="https://www.tiktok.com/@francie7411" target="_blank">🎵 TikTok</a></li>
+                    <li><a href="https://www.snapchat.com/add/ladouce2612" target="_blank">👻 Snapchat</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://wa.me/2290166697411" target="_blank" title="WhatsApp">💬</a>
+                    <a href="https://www.tiktok.com/@francie7411" target="_blank" title="TikTok">🎵</a>
+                    <a href="https://www.snapchat.com/add/ladouce2612" target="_blank" title="Snapchat">👻</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CIE MODE - La Qualité À Votre Portée | Tous droits réservés | Cotonou, Bénin 🇧🇯</p>
+            <p style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--gold-dark);">
+                Créé avec ❤️ pour la mode africaine
+            </p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2290166697411" target="_blank" class="whatsapp-float" title="Contactez-nous sur WhatsApp">
+        💬
+    </a>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" onclick="scrollToTop()" title="Retour en haut">↑</button>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileOverlay = document.querySelector('.mobile-overlay');
+            const body = document.body;
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollTop = document.querySelector('.scroll-top');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                scrollTop.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form - Redirect to WhatsApp with Toast
+        function handleContact(e) {
+            e.preventDefault();
+            const nom = e.target.querySelector('#nom').value;
+            const telephone = e.target.querySelector('#telephone').value;
+            const email = e.target.querySelector('#email').value;
+            const message = e.target.querySelector('#message').value;
+            
+            // Create WhatsApp message
+            let whatsappMessage = `Bonjour CIE MODE! 👋%0A%0A`;
+            whatsappMessage += `*Nom:* ${nom}%0A`;
+            whatsappMessage += `*Téléphone:* ${telephone}%0A`;
+            if (email) whatsappMessage += `*Email:* ${email}%0A`;
+            whatsappMessage += `%0A*Message:*%0A${message}`;
+            
+            const whatsappUrl = `https://wa.me/2290166697411?text=${whatsappMessage}`;
+            
+            // Show toast
+            showToast();
+            
+            // Open WhatsApp after a short delay
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 1000);
+            
+            // Reset form
+            e.target.reset();
+        }
+
+        // Show Toast Notification
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animations
+        document.querySelectorAll('.feature-section, .products-section, .about-section, .contact-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(section);
+        });
+
+        // Category cards animation on scroll
+        const categoryObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, index * 80);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px) scale(0.95)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            categoryObserver.observe(card);
+        });
+
+        // Value cards animation
+        document.querySelectorAll('.value-item').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            card.style.transitionDelay = `${index * 0.15}s`;
+        });
+
+        const valueObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.value-item').forEach(card => {
+            valueObserver.observe(card);
+        });
+
+        // Contact items animation
+        document.querySelectorAll('.contact-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-30px)';
+            item.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+            item.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        const contactObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.contact-item').forEach(item => {
+            contactObserver.observe(item);
+        });
+
+        // Prevent scrolling when mobile menu is open
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.querySelector('.mobile-menu').classList.remove('active');
+                document.querySelector('.mobile-overlay').classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Add loading state to buttons on click
+        document.querySelectorAll('.btn-outline, .btn-submit').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.classList.contains('loading')) {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                }
+            });
+        });
+
+        // Lazy load images (if you add real images later)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Console welcome message
+        console.log('%c✨ Bienvenue sur CIE MODE ✨', 'font-size: 24px; color: #D4AF37; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+        console.log('%c🛍️ La Qualité À Votre Portée depuis Mai 2023', 'font-size: 16px; color: #666;');
+        console.log('%c📱 WhatsApp: +229 01 66 69 74 11', 'font-size: 14px; color: #25D366; font-weight: bold;');
+        console.log('%c🌍 Livraison disponible partout dans le monde', 'font-size: 12px; color: #888;');
+
+        // Performance optimization: Debounce scroll event
+        let scrollTimeout;
+        const debouncedScroll = () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Your scroll-related code here if needed
+            }, 100);
+        };
+
+        window.addEventListener('scroll', debouncedScroll, { passive: true });
+
+        // Add smooth transitions to all links
+        document.querySelectorAll('a').forEach(link => {
+            link.style.transition = 'all 0.3s ease';
+        });
+
+        // Preload critical resources
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preconnect';
+        preloadLink.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preloadLink);
+
+        // Track page visibility for analytics (optional)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                console.log('Page is now hidden');
+            } else {
+                console.log('Page is now visible');
+            }
+        });
+
+        // Add touch feedback for mobile devices
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.btn-outline, .category-card, .value-item, .social-btn').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                }, { passive: true });
+                
+                element.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                }, { passive: true });
+            });
+        }
+
+        // Initialize all animations on page load
+        window.addEventListener('load', function() {
+            // Trigger initial animations
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+
+            // Check if animations should be reduced for accessibility
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) {
+                document.querySelectorAll('*').forEach(el => {
+                    el.style.animation = 'none';
+                    el.style.transition = 'none';
+                });
+            }
+        });
+
+        // Easter egg: Konami code for special effect
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                document.body.style.animation = 'rainbow 2s infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 5000);
+                console.log('🎉 Code secret activé ! 🎉');
+            }
+        });
+
+        // Add rainbow animation for easter egg
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Show a welcome message after 3 seconds for first-time visitors
+        setTimeout(() => {
+            if (!sessionStorage.getItem('welcomeShown')) {
+                const toast = document.getElementById('toast');
+                const toastIcon = toast.querySelector('.toast-icon');
+                const toastTitle = toast.querySelector('.toast-message h4');
+                const toastMessage = toast.querySelector('.toast-message p');
+                
+                toastIcon.textContent = '👋';
+                toastTitle.textContent = 'Bienvenue chez CIE MODE !';
+                toastMessage.textContent = 'Découvrez nos collections exclusives';
+                
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    // Reset toast content
+                    toastIcon.textContent = '✅';
+                    toastTitle.textContent = 'Message envoyé !';
+                    toastMessage.textContent = 'Redirection vers WhatsApp...';
+                }, 4000);
+                
+                sessionStorage.setItem('welcomeShown', 'true');
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
